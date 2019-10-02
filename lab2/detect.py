@@ -3,11 +3,10 @@ import numpy as np
 
 class ImageObjectDetector:
     def __init__(self, image):
-        self.sumin = 500
-        self.sumax = 900
-        self.spmin = 1800
-        self.spmax = 3900
-        self.tflor = float(87)
+        self.sugar_min = 500
+        self.sugar_max = 900
+        self.spoon_min = 1800
+        self.spoon_max = 3900
         self.image = image
         self.width = image.size[0]
         self.height = image.size[1]
@@ -21,7 +20,7 @@ class ImageObjectDetector:
         self.cluster2 = []
         self.areas = 0
 
-    def _labeling(self):
+    def labeling(self):
         for i in range(self.width):
             for j in range(self.height):
                 self.__fill(i, j)
@@ -42,7 +41,7 @@ class ImageObjectDetector:
             upper = self.labels[x][y - 1]
         else:
             return
-        if self.__pix(x, y) == 255:
+        if self.image.getpixel((x, y)) == 255:
             if left == 0 and upper == 0:
                 self.areas += 1
                 self.labels[x][y] = self.areas
@@ -134,19 +133,15 @@ class ImageObjectDetector:
         for i in range(len(self.densities)):
             self.densities[i] = pow(self.perimeters[i], 2) / self.squares[i]
 
-    def __pix(self, x, y):
-        return self.image.getpixel((x, y))
-
     def __get_tuples(self):
         for i in range(self.areas):
-            if self.sumin < self.squares[i] < self.sumax and floor(self.densities[i]) != self.tflor or \
-               self.spmin < self.squares[i] < self.spmax and floor(self.densities[i]) != self.tflor:
+            if (self.sugar_min < self.squares[i] < self.sugar_max or self.spoon_min < self.squares[i] < self.spoon_max):
                 self.tuples.append([self.squares[i], self.perimeters[i], self.densities[i]])
 
-    def _show(self):
+    def show(self):
         self.image.show()
 
-    def _kmedians(self):
+    def kmedians(self):
         self.__get_tuples()
         print(len(self.tuples), self.tuples)
         center1 = [3500, 550, 100]
@@ -179,7 +174,7 @@ class ImageObjectDetector:
         print("Spoons:", len(self.cluster1))
         print("Sugar:", len(self.cluster2))
 
-    def _colorize_clusters(self):
+    def colorize_clusters(self):
         cluster1colors = []
         cluster2colors = []
         self.image = self.image.convert('RGB')
@@ -189,7 +184,7 @@ class ImageObjectDetector:
             cluster2colors.append(self.densities.index(self.cluster2[i][2]) + 1)
         for i in range(self.width):
             for j in range(self.height):
-                if self.__pix(i, j) == (255, 255, 255):
+                if self.image.getpixel((i, j)) == (255, 255, 255):
                     if cluster1colors.count(self.labels[i][j]) > 0:
                         self.image.putpixel((i, j), (255, 0, 0))
                     if cluster2colors.count(self.labels[i][j]) > 0:

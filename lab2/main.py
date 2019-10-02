@@ -4,16 +4,16 @@ from PIL import Image
 
 
 def main():
-    image = Image.open('b.jpg')
+    image = Image.open('d.jpg')
     image.show()
     image = otsuThreshold(filtering(image))
     image.show()
     detector = ImageObjectDetector(image)
-    detector._labeling()
+    detector.labeling()
     
-    detector._kmedians()
-    detector._colorize_clusters()
-    detector._show()
+    detector.kmedians()
+    detector.colorize_clusters()
+    detector.show()
 
 
 if __name__ == "__main__":
