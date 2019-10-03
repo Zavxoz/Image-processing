@@ -5,7 +5,7 @@ class ImageObjectDetector:
     def __init__(self, image):
         self.sugar_min = 500
         self.sugar_max = 900
-        self.spoon_min = 2500
+        self.spoon_min = 1800
         self.spoon_max = 3900
         self.image = image
         self.width = image.size[0]
