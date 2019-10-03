@@ -4,7 +4,7 @@ from PIL import Image
 
 
 def main():
-    image = Image.open('d.jpg')
+    image = Image.open('c.jpg')
     image.show()
     image = otsuThreshold(filtering(image))
     image.show()

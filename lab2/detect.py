@@ -3,9 +3,9 @@ import numpy as np
 
 class ImageObjectDetector:
     def __init__(self, image):
-        self.sugar_min = 500
-        self.sugar_max = 900
-        self.spoon_min = 1800
+        self.sugar_min = 400
+        self.sugar_max = 850
+        self.spoon_min = 1700
         self.spoon_max = 3900
         self.image = image
         self.width = image.size[0]
@@ -135,7 +135,7 @@ class ImageObjectDetector:
     
     def __get_tuples(self):
         for i in range(self.areas):
-            if (self.sugar_min < self.squares[i] < self.sugar_max or self.spoon_min < self.squares[i] < self.spoon_max) and self.perimeters[i]>100:
+            if (self.sugar_min < self.squares[i] < self.sugar_max or self.spoon_min < self.squares[i] < self.spoon_max):
                 self.tuples.append([self.squares[i], self.perimeters[i], self.densities[i]])
 
     def show(self):
@@ -144,8 +144,8 @@ class ImageObjectDetector:
     def kmedians(self):
         self.__get_tuples()
         print(len(self.tuples), self.tuples)
-        center1 = [3500, 550, 100]
-        center2 = [700, 125, 25]
+        center1 = [350, 55, 10]
+        center2 = [70, 12, 2]
         for i in range(100):
             list1 = [[], [], []]
             list2 = [[], [], []]
