@@ -93,14 +93,13 @@ def filtering(image):
                 minimum(pix, i, j, 1),
                 minimum(pix, i, j, 2)))
 
-    
-    for k in range(3):
-        for i in range(2, image.size[0] - 2):
-            for j in range(2, image.size[1] - 2):
-                brush.point((i, j), fill=(
-                    median(pix, i, j, 0),
-                    median(pix, i, j, 1),
-                    median(pix, i, j, 2)))
+
+    for i in range(2, image.size[0] - 2):
+        for j in range(2, image.size[1] - 2):
+            brush.point((i, j), fill=(
+                median(pix, i, j, 0),
+                median(pix, i, j, 1),
+                median(pix, i, j, 2)))
             
     del brush
     image.show()
