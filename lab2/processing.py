@@ -5,17 +5,6 @@ from PIL import Image, ImageDraw
 
 INTENSITY_LAYER_NUMBER = 256 
 
-def grayscale(image):
-    draw = ImageDraw.Draw(image)
-    for x in range(image.size[0]):
-        for y in range(image.size[1]):
-            r, g, b = image.getpixel((x, y))
-            Y = int(0.3 * r + 0.59 * g + 0.11 * b)
-            draw.point((x, y), (Y, Y, Y))
-    del draw
-    return image
-
-
 def minimum(pix, i, j, k):
     tmp = [pix[i, j][k],
                pix[i + 1, j][k],
@@ -92,7 +81,6 @@ def filtering(image):
                 minimum(pix, i, j, 0),
                 minimum(pix, i, j, 1),
                 minimum(pix, i, j, 2)))
-
 
     for i in range(2, image.size[0] - 2):
         for j in range(2, image.size[1] - 2):
