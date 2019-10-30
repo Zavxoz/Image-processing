@@ -28,8 +28,6 @@ class Concurrent_Net:
             self.__W[winner] = v / np.sqrt(np.sum(v ** 2))
 
             if np.array_equal(w, self.__W):
-                print('Weights don\'t change anymore')
-                print('Num of wins:', f)
                 return
 
     def recognize(self, sample):
