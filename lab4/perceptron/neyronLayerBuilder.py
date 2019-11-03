@@ -72,7 +72,7 @@ class NeyronLayerBuilder:
                         ej += dk * proizv * self.OutMatrix[j][k]
                     gj = hideOut[j]
                     temp = beta * gj * (1 - gj) * ej
-                    self.HideMatrix[i][j] +hideNeyrons= temp * shape[i]
+                    self.HideMatrix[i][j] = temp * shape[i]
                     if i == 0:
                         self.HideRestriction[j] += temp
 
