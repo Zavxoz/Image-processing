@@ -1,6 +1,6 @@
 from ney_parser import imageParser as imp
 from ney_parser import noiseGenerator as ng
-from perceptron import neyronLayerBuilder
+from perceptron.neyronLayerBuilder import NeyronLayerBuilder
 
 
 def generate_noise(__original, __count, __noises):

@@ -8,7 +8,6 @@ def parse_image_to_shape(input_file):
     result = []
     for i in range(0, height):
         for j in range(0, width):
-            print(image.getpixel((i,j)))
             if image.getpixel((i,j)) == 0:
                 result.append(1)
             elif image.getpixel((i,j)) == 255:
